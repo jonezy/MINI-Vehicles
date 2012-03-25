@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MINI Vehicles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="c/bootstrap.css" rel="stylesheet">
+    <style>
+      #vehicle-list div p {margin:0;}
+      .container {position:relative;}
+      #loading {
+        position:absolute;
+        top:0;left:0;
+        width:100%;height:100%;
+        padding:200px 0px 0px 0px;
+        background:#fff;
+        text-align:center;
+        vertical-align:middle;}
+    </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+    <div class="container">
+      <div id="loading">Loading vehicles...</div>
+      <div class="page-header">
+        <h1>MINI Vehicles</h1>
+      </div>
+      <div class="row" id="app-container">
+        <div class="span4">
+          <ul id="vehicle-list" class="well nav nav-list"></ul> 
+        </div>
+        <div class="span8">
+          <div class="well span6">
+            <h2 style="margin-bottom:20px;border-bottom:solid 1px #ddd;">Vehicle Details</h2>
+            <div id="details-view"></div>
+          </div>
+          <div class="well span6" id="stats-output"></div>
+        <div>
+      </div>
+    </div><!-- /container -->
+    
+    <script type="text/template" id="details-template">
+      <h3><%= ModelFamily.Name %> - <%= Name %><small> <%= Price %></small></h3>
+      <h4>Vehicle Specs</h4>
+      <ul>
+        <li>Max Torque: <%= VehicleSpecs.MaxTorqueRevs %></li>
+        <li>Output: <%= VehicleSpecs.Output %></li>
+      </ul>
+      <h4>Body Colours</h4>
+      <ul>
+        <% _.each(BodyColours, function(bodycolour) { %>
+          <% if(bodycolour && bodycolour.Description) { %>
+          <li><%= bodycolour.Description %></li>
+          <% } %>
+        <% }) %>
+      </ul>
+      <a id="close" class="pull-right close">&times;</a>
+    </script>
+    <script type="text/template" id="item-template">
+      <a href="#" id="<%= CACode %>"><%= Name %></a>
+    </script>
+
+    <script type="text/template" id="stats-template">
+        <h3>Information</h3>
+        Total Vehicles: <%= TotalVehicles %>
+    </script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="j/underscore-min.js"></script>
+    <script src="j/backbone-min.js"></script>
+
+    <script src="j/app.js"></script>
+
+  </body>
+</html>
+
