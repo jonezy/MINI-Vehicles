@@ -31,7 +31,7 @@ $(function() {
 
   var VehicleDetailsView = Backbone.View.extend({
     template: _.template($('#details-template').html()),
-    el: "<div>",
+    el: "#details-view",
     events: {
       "click a#close": "close"
     },
@@ -39,7 +39,7 @@ $(function() {
       this.render();
     },
     render: function() {
-      $('#details-view').html(this.$el.html(this.template(this.model.toJSON())));
+      this.$el.html(this.template(this.model.toJSON()));
     },
     close: function() {
       this.remove();
